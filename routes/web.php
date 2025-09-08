@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\TeamMemberController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PlaceOrderItemController;
+
 
 route::get('/', function () {
     return ['Laravel' => app()->version()];
@@ -35,4 +36,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('important-infos', OrderController::class)->parameters([
         'important-infos' => 'important_info'
     ]);
+});
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('place-order', PlaceOrderItemController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('reasons', \App\Http\Controllers\Admin\ReasonController::class);
 });
