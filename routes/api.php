@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\PlaceOrderItemController;
 use App\Http\Controllers\Admin\ReasonController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\HeroSliderController;
+
+
 
 
 // API routes (React will use this)
@@ -15,3 +19,10 @@ Route::get('/place-order', [PlaceOrderItemController::class, 'apiIndex']);
 
 
 Route::get('/reasons', [ReasonController::class, 'apiIndex']);
+
+
+Route::get('/product-categories', [ProductCategoryController::class, 'apiIndex']);
+
+
+
+Route::get('/hero-sliders', [HeroSliderController::class, 'apiIndex']);

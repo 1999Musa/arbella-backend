@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\PlaceOrderItemController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\HeroSliderController;
+
+
 
 
 route::get('/', function () {
@@ -25,15 +29,15 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::resource('orders', OrderController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('orders', PlaceOrderItemController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('order-steps', OrderController::class)->parameters([
+    Route::resource('order-steps', PlaceOrderItemController::class)->parameters([
         'order-steps' => 'order_step'
     ]);
 
-    Route::resource('important-infos', OrderController::class)->parameters([
+    Route::resource('important-infos', PlaceOrderItemController::class)->parameters([
         'important-infos' => 'important_info'
     ]);
 });
@@ -47,4 +51,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('reasons', \App\Http\Controllers\Admin\ReasonController::class);
+});
+
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('product-categories', ProductCategoryController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('hero-sliders', HeroSliderController::class);
 });
