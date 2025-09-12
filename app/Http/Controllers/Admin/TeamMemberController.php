@@ -28,7 +28,7 @@ class TeamMemberController extends Controller
             'position' => 'required|string|max:255',
             'position2' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', // must be image, not string
+            'image' => 'nullable|image|max:40960', // must be image, not string
         ]);
 
         // Handle image upload
@@ -54,7 +54,7 @@ class TeamMemberController extends Controller
             'position' => 'required|string|max:255',
             'position2' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048'
+            'image' => 'nullable|image|max:40960', 
         ]);
 
         if ($request->hasFile('image')) {

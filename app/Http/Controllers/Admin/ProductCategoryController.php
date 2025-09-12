@@ -27,12 +27,12 @@ class ProductCategoryController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:40960',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:40960',
         ]);
 
         // Create new category
-        $category = new \App\Models\ProductCategory();
+        $category = new ProductCategory();
         $category->title = $data['title'];
         $category->description = $data['description'] ?? null;
 
@@ -65,8 +65,8 @@ class ProductCategoryController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:40960',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:40960',
         ]);
 
         if ($request->hasFile('hero_image')) {

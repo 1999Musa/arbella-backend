@@ -6,6 +6,12 @@ use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\PlaceOrderItemController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\HeroSliderController;
+use App\Http\Controllers\Admin\FactoryController;
+use App\Http\Controllers\Admin\SustainabilityController;
+use App\Http\Controllers\Admin\CommunityController;
+use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\ProductSliderController;
+use App\Http\Controllers\Admin\FrontFactoryController;
 
 
 
@@ -64,3 +70,56 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('hero-sliders', HeroSliderController::class);
 });
+
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('factory', FactoryController::class);
+});
+
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    // Custom image removal routes **before** resource
+    Route::delete('sustainability/{sustainability}/remove-hero', [SustainabilityController::class, 'removeHeroImage'])
+        ->name('sustainability.removeHero');
+
+    Route::delete('sustainability/{sustainability}/remove-image', [SustainabilityController::class, 'removePillarImage'])
+        ->name('sustainability.removeImage');
+
+    // Resource route
+    Route::resource('sustainability', SustainabilityController::class);
+});
+
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::delete('community/{community}/remove-hero', [CommunityController::class, 'removeHeroImage'])->name('community.removeHero');
+    Route::delete('community/{community}/remove-image/{index}', [CommunityController::class, 'removeImage'])->name('community.removeImage');
+
+    Route::resource('community', CommunityController::class);
+});
+
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('logo', LogoController::class);
+    Route::delete('logo/{logo}/remove-image', [LogoController::class, 'removeImage'])->name('logo.removeImage');
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('product-sliders', ProductSliderController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('front-factory', FrontFactoryController::class);
+});
+

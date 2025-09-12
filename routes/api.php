@@ -6,6 +6,12 @@ use App\Http\Controllers\Admin\PlaceOrderItemController;
 use App\Http\Controllers\Admin\ReasonController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\HeroSliderController;
+use App\Http\Controllers\Admin\FactoryController;
+use App\Http\Controllers\Admin\SustainabilityController;
+use App\Http\Controllers\Admin\CommunityController;
+use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\ProductSliderController;
+use App\Http\Controllers\Admin\FrontFactoryController;
 
 
 
@@ -26,3 +32,26 @@ Route::get('/product-categories', [ProductCategoryController::class, 'apiIndex']
 
 
 Route::get('/hero-sliders', [HeroSliderController::class, 'apiIndex']);
+
+
+
+Route::get('/factory', [FactoryController::class, 'apiIndex']);
+
+
+
+Route::get('/sustainabilities', [SustainabilityController::class, 'apiIndex']);
+
+
+
+Route::get('/communities', [CommunityController::class, 'apiIndex']);
+
+
+
+Route::get('/logo', [LogoController::class, 'apiIndex']);
+
+
+Route::get('/product-sliders', [ProductSliderController::class, 'apiIndex']);
+
+
+
+Route::get('/front-factory', [FrontFactoryController::class, 'apiIndex']);

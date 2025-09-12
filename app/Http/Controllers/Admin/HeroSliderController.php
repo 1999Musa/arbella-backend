@@ -25,7 +25,7 @@ class HeroSliderController extends Controller
         $data = $request->validate([
             'title' => 'nullable|string',
             'subtitle' => 'nullable|string',
-            'hero_image' => 'nullable|image|max:2048',
+            'hero_image' => 'nullable|image|max:40960',
         ]);
 
         $data['hero_image'] = $request->file('hero_image')->store('hero_sliders', 'public');
@@ -46,7 +46,7 @@ class HeroSliderController extends Controller
         $data = $request->validate([
             'title' => 'nullable|string',
             'subtitle' => 'nullable|string',
-            'hero_image' => 'nullable|image|max:2048',
+            'hero_image' => 'nullable|image|max:40960',
         ]);
 
         if ($request->hasFile('hero_image')) {
