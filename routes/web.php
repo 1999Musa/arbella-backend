@@ -12,8 +12,8 @@ use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
-
-
+use App\Http\Controllers\Admin\CertifiedLogoController;
+use App\Http\Controllers\Admin\ShortStoryVideoController;
 
 
 route::get('/', function () {
@@ -123,3 +123,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('front-factory', FrontFactoryController::class);
 });
 
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('certified-logos', CertifiedLogoController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('short-story', ShortStoryVideoController::class);
+});

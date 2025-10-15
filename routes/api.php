@@ -12,7 +12,8 @@ use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
-
+use App\Http\Controllers\Admin\CertifiedLogoController;
+use App\Http\Controllers\Admin\ShortStoryVideoController;
 
 
 
@@ -55,3 +56,9 @@ Route::get('/product-sliders', [ProductSliderController::class, 'apiIndex']);
 
 
 Route::get('/front-factory', [FrontFactoryController::class, 'apiIndex']);
+
+
+Route::get('/certified-logos', [CertifiedLogoController::class, 'apiIndex']);
+
+
+Route::get('/short-story-video', [ShortStoryVideoController::class, 'apiIndex']);

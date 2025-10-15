@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
+use App\Models\ShortStoryVideo;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -19,6 +20,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+          parent::boot();
+
+    Route::model('short_story', ShortStoryVideo::class);
+
         $this->routes(function () {
             // Load api.php routes
             Route::middleware('api')

@@ -10,11 +10,19 @@ use Illuminate\Support\Facades\Storage;
 class LogoController extends Controller
 {
     // API for React
-    public function apiIndex()
-    {
-        $logo = Logo::latest()->first(); // only need latest
-        return response()->json($logo);
+public function apiIndex()
+{
+    $logo = Logo::latest()->first();
+
+    if (!$logo || !$logo->image) {
+        return response()->json(['logo_url' => null]);
     }
+
+    return response()->json([
+        'logo_url' => asset('storage/' . $logo->image)
+    ]);
+}
+
 
     // Admin index
     public function index()
