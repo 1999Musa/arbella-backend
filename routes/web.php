@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
 use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
+use App\Http\Controllers\Admin\AboutHeroController;
 
 
 route::get('/', function () {
@@ -132,4 +133,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('short-story', ShortStoryVideoController::class);
+});
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('about-hero', AboutHeroController::class);
 });

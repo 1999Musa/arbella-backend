@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
 use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
+use App\Http\Controllers\Admin\AboutHeroController;
 
 
 
@@ -62,3 +63,6 @@ Route::get('/certified-logos', [CertifiedLogoController::class, 'apiIndex']);
 
 
 Route::get('/short-story-video', [ShortStoryVideoController::class, 'apiIndex']);
+
+
+Route::get('/about-hero', [AboutHeroController::class, 'apiIndex']);
