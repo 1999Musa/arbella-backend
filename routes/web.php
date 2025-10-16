@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\HeroSliderController;
 use App\Http\Controllers\Admin\FactoryController;
 use App\Http\Controllers\Admin\SustainabilityController;
-use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
@@ -18,14 +17,18 @@ use App\Http\Controllers\Admin\AboutHeroController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ChooseHeroController;
 use App\Http\Controllers\Admin\ExcellenceController;
-
-
-
+use App\Http\Controllers\Admin\CommunitySectionController;
 
 
 
 route::get('/', function () {
     return ['Laravel' => app()->version()];
+});
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('community', CommunitySectionController::class);
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -100,17 +103,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Resource route
     Route::resource('sustainability', SustainabilityController::class);
-});
-
-
-
-
-Route::prefix('admin')->name('admin.')->group(function () {
-
-    Route::delete('community/{community}/remove-hero', [CommunityController::class, 'removeHeroImage'])->name('community.removeHero');
-    Route::delete('community/{community}/remove-image/{index}', [CommunityController::class, 'removeImage'])->name('community.removeImage');
-
-    Route::resource('community', CommunityController::class);
 });
 
 

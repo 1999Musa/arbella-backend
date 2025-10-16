@@ -1,53 +1,29 @@
 @extends('admin.layout')
 
 @section('content')
-<div class="container">
-    <h1>Community Records</h1>
-    <a href="{{ route('admin.community.create') }}" class="btn btn-primary mb-3">Add New</a>
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Community Sections</h1>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Hero Image</th>
-                <th>Title</th>
-                <th>Images</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($communities as $c)
-                <tr>
-                    <td>{{ $c->id }}</td>
-                    <td>
-                        @if($c->hero_image)
-                            <img src="{{ Storage::url($c->hero_image) }}" width="100">
-                        @else
-                            No Image
-                        @endif
-                    </td>
-                    <td>{{ $c->title }}</td>
-                    <td>
-                        @if($c->images)
-                            @foreach ($c->images as $img)
-                                <img src="{{ Storage::url($img) }}" width="50" class="mb-1">
-                            @endforeach
-                        @else
-                            No Images
-                        @endif
-                    </td>
-                    <td>{{ Str::limit($c->description, 50) }}</td>
-                    <td>
-                        <a href="{{ route('admin.community.edit', $c->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('admin.community.destroy', $c->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+  <a href="{{ route('admin.community.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Add Images</a>
+
+  <div class="mt-6">
+    @foreach($sections as $section)
+      <div class="border p-4 rounded mb-4">
+        <h2 class="font-semibold text-lg capitalize">{{ $section->type }}</h2>
+        <div class="flex gap-2 mt-2 flex-wrap">
+          @foreach($section->images as $img)
+            <img src="{{ asset('storage/'.$img) }}" class="w-32 h-20 object-cover rounded" />
+          @endforeach
+        </div>
+        <div class="mt-2 flex gap-2">
+          <a href="{{ route('admin.community.edit', $section->id) }}" class="text-blue-500">Edit</a>
+          <form method="POST" action="{{ route('admin.community.destroy', $section->id) }}">
+            @csrf @method('DELETE')
+            <button type="submit" class="text-red-500">Delete</button>
+          </form>
+        </div>
+      </div>
+    @endforeach
+  </div>
 </div>
 @endsection

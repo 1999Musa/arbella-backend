@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\PlaceOrderItemController;
-use App\Http\Controllers\Admin\ReasonController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\HeroSliderController;
 use App\Http\Controllers\Admin\FactoryController;
 use App\Http\Controllers\Admin\SustainabilityController;
-use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\Admin\LogoController;
 use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\FrontFactoryController;
@@ -18,13 +16,14 @@ use App\Http\Controllers\Admin\AboutHeroController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ChooseHeroController;
 use App\Http\Controllers\Admin\ExcellenceController;
-
-
+use App\Http\Controllers\Admin\CommunitySectionController;
 
 
 // API routes (React will use this)
 Route::get('/team-members', [TeamMemberController::class, 'apiIndex']);
 
+
+Route::get('/community', [CommunitySectionController::class, 'apiIndex']);
 
 
 Route::get('/clients', [ClientController::class, 'apiIndex']);
@@ -53,9 +52,6 @@ Route::get('/excellence', [ExcellenceController::class, 'apiIndex']);
 
 Route::get('/sustainabilities', [SustainabilityController::class, 'apiIndex']);
 
-
-
-Route::get('/communities', [CommunityController::class, 'apiIndex']);
 
 
 
