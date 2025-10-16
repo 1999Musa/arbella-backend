@@ -16,6 +16,12 @@ use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
 use App\Http\Controllers\Admin\AboutHeroController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ChooseHeroController;
+use App\Http\Controllers\Admin\ExcellenceController;
+
+
+
+
 
 
 route::get('/', function () {
@@ -145,4 +151,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('clients', ClientController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('chooseimg', ChooseHeroController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('excellence', ExcellenceController::class)->only(['index', 'create', 'store', 'edit', 'update']);
 });

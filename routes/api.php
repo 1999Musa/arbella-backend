@@ -16,6 +16,9 @@ use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
 use App\Http\Controllers\Admin\AboutHeroController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ChooseHeroController;
+use App\Http\Controllers\Admin\ExcellenceController;
+
 
 
 
@@ -31,7 +34,7 @@ Route::get('/place-order', [PlaceOrderItemController::class, 'apiIndex']);
 
 
 
-Route::get('/reasons', [ReasonController::class, 'apiIndex']);
+Route::get('/chooseimg', [ChooseHeroController::class, 'apiIndex']);
 
 
 Route::get('/product-categories', [ProductCategoryController::class, 'apiIndex']);
@@ -44,6 +47,8 @@ Route::get('/hero-sliders', [HeroSliderController::class, 'apiIndex']);
 
 Route::get('/factory', [FactoryController::class, 'apiIndex']);
 
+
+Route::get('/excellence', [ExcellenceController::class, 'apiIndex']);
 
 
 Route::get('/sustainabilities', [SustainabilityController::class, 'apiIndex']);
