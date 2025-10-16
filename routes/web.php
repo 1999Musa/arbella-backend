@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\FrontFactoryController;
 use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
 use App\Http\Controllers\Admin\AboutHeroController;
+use App\Http\Controllers\Admin\ClientController;
 
 
 route::get('/', function () {
@@ -26,14 +27,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // route::get('/dashboard', [App\Http\Controllers\TeamMemberController::class, 'index']);
-Route::prefix('admin')->group(function () {
-    Route::get('/team-members', [TeamMemberController::class, 'index'])->name('admin.team-members.index');
-    Route::get('/team-members/create', [TeamMemberController::class, 'create'])->name('admin.team-members.create');
-    Route::post('/team-members', [TeamMemberController::class, 'store'])->name('admin.team-members.store');
-    Route::get('/team-members/{id}/edit', [TeamMemberController::class, 'edit'])->name('admin.team-members.edit');
-    Route::put('/team-members/{id}', [TeamMemberController::class, 'update'])->name('admin.team-members.update');
-    Route::delete('/team-members/{id}', [TeamMemberController::class, 'destroy'])->name('admin.team-members.destroy');
-});
+// Route::prefix('admin')->group(function () {
+//     Route::get('/team-members', [TeamMemberController::class, 'index'])->name('admin.team-members.index');
+//     Route::get('/team-members/create', [TeamMemberController::class, 'create'])->name('admin.team-members.create');
+//     Route::post('/team-members', [TeamMemberController::class, 'store'])->name('admin.team-members.store');
+//     Route::get('/team-members/{id}/edit', [TeamMemberController::class, 'edit'])->name('admin.team-members.edit');
+//     Route::put('/team-members/{id}', [TeamMemberController::class, 'update'])->name('admin.team-members.update');
+//     Route::delete('/team-members/{id}', [TeamMemberController::class, 'destroy'])->name('admin.team-members.destroy');
+// });
 
 Route::prefix('admin')->group(function () {
     Route::resource('orders', PlaceOrderItemController::class)->only(['index', 'store', 'update', 'destroy']);
@@ -139,4 +140,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('about-hero', AboutHeroController::class);
+});
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('clients', ClientController::class);
 });

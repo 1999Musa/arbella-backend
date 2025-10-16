@@ -15,11 +15,16 @@ use App\Http\Controllers\Admin\FrontFactoryController;
 use App\Http\Controllers\Admin\CertifiedLogoController;
 use App\Http\Controllers\Admin\ShortStoryVideoController;
 use App\Http\Controllers\Admin\AboutHeroController;
+use App\Http\Controllers\Admin\ClientController;
 
 
 
 // API routes (React will use this)
 Route::get('/team-members', [TeamMemberController::class, 'apiIndex']);
+
+
+
+Route::get('/clients', [ClientController::class, 'apiIndex']);
 
 
 Route::get('/place-order', [PlaceOrderItemController::class, 'apiIndex']);

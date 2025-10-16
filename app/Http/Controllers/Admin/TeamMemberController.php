@@ -11,7 +11,7 @@ class TeamMemberController extends Controller
     // Admin panel views
     public function index()
     {
-        $members = TeamMember::latest()->get();
+        $members = TeamMember::orderBy('id', 'asc')->get();
         return view('admin.team-members.index', compact('members'));
     }
 
@@ -28,7 +28,7 @@ class TeamMemberController extends Controller
             'position' => 'required|string|max:255',
             'position2' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:40960', // must be image, not string
+            'image' => 'nullable|image|max:40960',
         ]);
 
         // Handle image upload
@@ -73,8 +73,9 @@ class TeamMemberController extends Controller
 
     // API for React
     public function apiIndex()
-    {
-        return response()->json(TeamMember::latest()->get(), 200);
-    }
+{
+    return response()->json(TeamMember::orderBy('id', 'asc')->get(), 200);
+}
+
 
 }

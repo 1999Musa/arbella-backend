@@ -4,26 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
-{
-    Schema::create('product_categories', function (Blueprint $table) {
-    $table->id();
-    $table->string('title');
-    $table->text('description')->nullable();
-    $table->string('hero_image')->nullable();
-    $table->json('images')->nullable();
-    $table->timestamps();
-});
+    {
+        Schema::create('product_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('title'); // category name
+            $table->text('description')->nullable();
+            $table->json('images')->nullable();
 
-}
-    /**
-     * Reverse the migrations.
-     */
+            // ✅ New product-related columns
+            $table->string('product_name')->nullable();
+            $table->string('product_code')->nullable();
+            $table->string('moq')->nullable();
+            $table->string('fob')->nullable();
+
+            $table->timestamps();
+        });
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('product_categories');
