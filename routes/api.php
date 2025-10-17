@@ -17,10 +17,15 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ChooseHeroController;
 use App\Http\Controllers\Admin\ExcellenceController;
 use App\Http\Controllers\Admin\CommunitySectionController;
+use App\Http\Controllers\Admin\ContactHeroController;
 
 
 // API routes (React will use this)
 Route::get('/team-members', [TeamMemberController::class, 'apiIndex']);
+
+
+
+Route::get('/contacthero', [ContactHeroController::class, 'apiIndex']);
 
 
 Route::get('/community', [CommunitySectionController::class, 'apiIndex']);

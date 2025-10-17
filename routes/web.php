@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ChooseHeroController;
 use App\Http\Controllers\Admin\ExcellenceController;
 use App\Http\Controllers\Admin\CommunitySectionController;
+use App\Http\Controllers\Admin\ContactHeroController;
 
 
 
@@ -25,6 +26,11 @@ route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('contacthero', ContactHeroController::class);
+});
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
