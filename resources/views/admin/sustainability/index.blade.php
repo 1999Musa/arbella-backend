@@ -22,8 +22,8 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hero Image</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    <!--<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>-->
+                    <!--<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>-->
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                 </tr>
             </thead>
@@ -39,17 +39,17 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $s->title }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                             @if($s->image)
-                                <img src="{{ Storage::url($s->image) }}" class="w-24 h-14 object-cover rounded-md shadow-sm">
-                            @else
-                                <span class="text-xs text-gray-400">No Image</span>
-                            @endif
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ Str::limit($s->description, 40) }}</td>
+                        <!--<td class="px-6 py-4 whitespace-nowrap">-->
+                        <!--     @if($s->image)-->
+                        <!--        <img src="{{ Storage::url($s->image) }}" class="w-24 h-14 object-cover rounded-md shadow-sm">-->
+                        <!--    @else-->
+                        <!--        <span class="text-xs text-gray-400">No Image</span>-->
+                        <!--    @endif-->
+                        <!--</td>-->
+                        <!--<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ Str::limit($s->description, 40) }}</td>-->
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex items-center space-x-2">
-                                <a href="{{ route('admin.sustainability.edit', $s->id) }}" class="text-indigo-600 hover:text-indigo-900 bg-indigo-100 hover:bg-indigo-200 px-3 py-1 rounded-full text-xs font-semibold transition">Edit</a>
+                                <!--<a href="{{ route('admin.sustainability.edit', $s->id) }}" class="text-indigo-600 hover:text-indigo-900 bg-indigo-100 hover:bg-indigo-200 px-3 py-1 rounded-full text-xs font-semibold transition">Edit</a>-->
                                 <form action="{{ route('admin.sustainability.destroy', $s->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                     @csrf
                                     @method('DELETE')

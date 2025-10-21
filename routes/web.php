@@ -51,8 +51,16 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('about-hero', AboutHeroController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('chooseimg', ChooseHeroController::class);
-    Route::resource('excellence', ExcellenceController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    
+        // ✅ Excellence Routes (kept inside admin group)
+    Route::resource('excellence', ExcellenceController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+
+    // ✅ Properly prefixed route for remove-image
+    Route::delete('excellence/{id}/remove-image', [ExcellenceController::class, 'removeImage'])
+        ->name('excellence.removeImage');
 });
+
+
 
 
 require __DIR__.'/auth.php';

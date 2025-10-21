@@ -27,14 +27,13 @@ class ExcellenceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120', // max 5MB
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'section_id' => 'required|exists:excellence_sections,id',
         ]);
 
         $section = ExcellenceSection::findOrFail($request->section_id);
 
         $uploadedImages = [];
-
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('excellence', 'public');
@@ -48,33 +47,31 @@ class ExcellenceController extends Controller
         return redirect()->back()->with('success', 'Images uploaded successfully!');
     }
 
-    // Show edit form for a specific section
+    // Edit section
     public function edit($id)
     {
         $section = ExcellenceSection::findOrFail($id);
         return view('admin.excellence.edit', compact('section'));
     }
 
-    // Optional: handle update if you want to allow replacing images
+    // Update section (add/remove images)
     public function update(Request $request, $id)
     {
         $section = ExcellenceSection::findOrFail($id);
-
-        // Get images as a plain array
         $images = $section->images ?? [];
 
-        // Remove selected images
-        if ($request->has('remove_images')) {
-            foreach ($request->remove_images as $img) {
-                if (($key = array_search($img, $images)) !== false) {
-                    Storage::disk('public')->delete($img); // delete from storage
-                    unset($images[$key]); // remove from array
+        // ✅ Remove selected checkboxes
+        if ($request->filled('remove_images')) {
+            foreach ($request->remove_images as $imgPath) {
+                if (in_array($imgPath, $images)) {
+                    Storage::disk('public')->delete($imgPath);
+                    $images = array_filter($images, fn($img) => $img !== $imgPath);
                 }
             }
-            $images = array_values($images); // reindex
+            $images = array_values($images);
         }
 
-        // Upload new images if any
+        // ✅ Upload new images
         if ($request->hasFile('images')) {
             $request->validate([
                 'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -86,16 +83,39 @@ class ExcellenceController extends Controller
             }
         }
 
-        // Assign back the modified array
-        $section->images = $images;
+        $section->images = array_values($images);
         $section->save();
 
         return redirect()->back()->with('success', 'Section updated successfully!');
     }
 
+    // ✅ AJAX remove image (instant delete)
+public function removeImage(Request $request, $id)
+{
+    $section = ExcellenceSection::findOrFail($id);
+    $imagePath = $request->input('image');
+
+    if (!$imagePath) {
+        return response()->json(['success' => false, 'message' => 'No image path provided.']);
+    }
+
+    $images = $section->images ?? [];
+
+    if (in_array($imagePath, $images)) {
+        Storage::disk('public')->delete($imagePath);
+        $images = array_values(array_filter($images, fn($img) => $img !== $imagePath));
+        $section->images = $images;
+        $section->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false, 'message' => 'Image not found in this section.']);
+}
 
 
-    // API for frontend
+
+    // API for React
     public function apiIndex()
     {
         $sections = ExcellenceSection::all();
