@@ -19,6 +19,9 @@
             background-color: #10b981;
             color: white !important;
         }
+        .active-group {
+            background-color: #a8e910 !important; /* Tailwind yellow-300 */
+        }
     </style>
 </head>
 
@@ -54,8 +57,10 @@
 
                 {{-- LANDING PAGE --}}
                 <div>
-                    <button @click="open = (open === 'landing' ? '' : 'landing')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'landing' ? 'active-group' : ''"
+                        @click="open = (open === 'landing' ? '' : 'landing')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Landing Page</span>
                         <svg :class="open === 'landing' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -65,19 +70,20 @@
                     </button>
                     <div x-show="open === 'landing'" x-collapse class="ml-4 mt-1 space-y-1">
                         <x-admin-link route="admin.logo.index" label="Logo" class="ajax-link" />
-                        <x-admin-link route="admin.hero-sliders.index" label="Hero Slider Images" class="ajax-link" />
-                        <x-admin-link route="admin.product-sliders.index" label="Product Slider Images" class="ajax-link" />
-                        <x-admin-link route="admin.front-factory.index" label="Front Factory Image" class="ajax-link" />
+                        <x-admin-link route="admin.hero-sliders.index" label="Hero Sliders" class="ajax-link" />
+                        <x-admin-link route="admin.product-sliders.index" label="Product Sliders" class="ajax-link" />
+                        <x-admin-link route="admin.front-factory.index" label="Front Factory" class="ajax-link" />
+                        <x-admin-link route="admin.certified-logos.index" label="Certified Logos" class="ajax-link" />
                         <x-admin-link route="admin.short-story.index" label="Short Story Video" class="ajax-link" />
-                        <x-admin-link route="admin.certified-logos.index" label="Certificate Logos" class="ajax-link" />
-                        
                     </div>
                 </div>
 
                 {{-- ABOUT US --}}
                 <div>
-                    <button @click="open = (open === 'about' ? '' : 'about')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'about' ? 'active-group' : ''"
+                        @click="open = (open === 'about' ? '' : 'about')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>About Us</span>
                         <svg :class="open === 'about' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -86,15 +92,17 @@
                         </svg>
                     </button>
                     <div x-show="open === 'about'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.about-hero.index" label="Hero Image" class="ajax-link" />
+                        <x-admin-link route="admin.about-hero.index" label="About Hero" class="ajax-link" />
                         <x-admin-link route="admin.team-members.index" label="Team Members" class="ajax-link" />
                     </div>
                 </div>
 
                 {{-- PRODUCTS --}}
                 <div>
-                    <button @click="open = (open === 'products' ? '' : 'products')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'products' ? 'active-group' : ''"
+                        @click="open = (open === 'products' ? '' : 'products')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Products</span>
                         <svg :class="open === 'products' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -103,14 +111,16 @@
                         </svg>
                     </button>
                     <div x-show="open === 'products'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.product-categories.index" label="Product Categories" class="ajax-link" />
+                        <x-admin-link route="admin.categories.index" label="Product Categories" class="ajax-link" />
                     </div>
                 </div>
 
                 {{-- WHY CHOOSE ARBELLA --}}
                 <div>
-                    <button @click="open = (open === 'choose' ? '' : 'choose')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'choose' ? 'active-group' : ''"
+                        @click="open = (open === 'choose' ? '' : 'choose')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Why Choose Arbella</span>
                         <svg :class="open === 'choose' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -119,14 +129,16 @@
                         </svg>
                     </button>
                     <div x-show="open === 'choose'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.chooseimg.index" label="Hero Image" class="ajax-link" />
+                        <x-admin-link route="admin.chooseimg.index" label="Choose Section Hero" class="ajax-link" />
                     </div>
                 </div>
 
                 {{-- OUR FACTORY --}}
                 <div>
-                    <button @click="open = (open === 'factory' ? '' : 'factory')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'factory' ? 'active-group' : ''"
+                        @click="open = (open === 'factory' ? '' : 'factory')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Our Factory</span>
                         <svg :class="open === 'factory' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -135,16 +147,17 @@
                         </svg>
                     </button>
                     <div x-show="open === 'factory'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.factory.index" label="Hero Image" class="ajax-link" />
-                        <x-admin-link route="admin.excellence.index" label="Excellence Section Images" class="ajax-link" />
-                        
+                        <x-admin-link route="admin.excellence.index" label="Excellence Section" class="ajax-link" />
+                        <x-admin-link route="admin.factory.index" label="Factory" class="ajax-link" />
                     </div>
                 </div>
 
                 {{-- SUSTAINABILITY --}}
                 <div>
-                    <button @click="open = (open === 'sustain' ? '' : 'sustain')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'sustain' ? 'active-group' : ''"
+                        @click="open = (open === 'sustain' ? '' : 'sustain')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Sustainability</span>
                         <svg :class="open === 'sustain' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -159,8 +172,10 @@
 
                 {{-- COMMUNITY --}}
                 <div>
-                    <button @click="open = (open === 'community' ? '' : 'community')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'community' ? 'active-group' : ''"
+                        @click="open = (open === 'community' ? '' : 'community')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Community</span>
                         <svg :class="open === 'community' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -169,14 +184,16 @@
                         </svg>
                     </button>
                     <div x-show="open === 'community'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.community.index" label="Community Section" class="ajax-link" />
+                        <x-admin-link route="admin.community.index" label="Community" class="ajax-link" />
                     </div>
                 </div>
 
                 {{-- CONTACT US --}}
                 <div>
-                    <button @click="open = (open === 'contact' ? '' : 'contact')"
-                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100">
+                    <button 
+                        :class="open === 'contact' ? 'active-group' : ''"
+                        @click="open = (open === 'contact' ? '' : 'contact')"
+                        class="flex justify-between items-center w-full px-4 py-3 text-sm font-semibold rounded-lg text-gray-700 hover:bg-gray-100 transition">
                         <span>Contact Us</span>
                         <svg :class="open === 'contact' ? 'rotate-180' : ''" class="w-4 h-4 transition-transform"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -185,7 +202,7 @@
                         </svg>
                     </button>
                     <div x-show="open === 'contact'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.contacthero.index" label="Hero Image" class="ajax-link" />
+                        <x-admin-link route="admin.contacthero.index" label="Contact Hero" class="ajax-link" />
                     </div>
                 </div>
             </nav>

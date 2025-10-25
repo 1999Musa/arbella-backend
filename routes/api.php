@@ -20,6 +20,10 @@ use App\Http\Controllers\Admin\CommunitySectionController;
 use App\Http\Controllers\Admin\ContactHeroController;
 
 
+use App\Http\Controllers\Api\CategoryController;
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
 // API routes (React will use this)
 Route::get('/team-members', [TeamMemberController::class, 'apiIndex']);
 
@@ -41,7 +45,7 @@ Route::get('/place-order', [PlaceOrderItemController::class, 'apiIndex']);
 Route::get('/chooseimg', [ChooseHeroController::class, 'apiIndex']);
 
 
-Route::get('/product-categories', [ProductCategoryController::class, 'apiIndex']);
+// Route::get('/product-categories', [ProductCategoryController::class, 'apiIndex']);
 
 
 

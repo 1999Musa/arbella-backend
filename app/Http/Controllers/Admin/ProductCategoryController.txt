@@ -45,7 +45,7 @@ class ProductCategoryController extends Controller
         }
 
         ProductCategory::create($data);
-        return redirect()->route('admin.product-categories.index')->with('success', 'Category created successfully!');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully!');
     }
 
     public function edit(ProductCategory $product_category)
@@ -79,7 +79,7 @@ class ProductCategoryController extends Controller
         }
 
         $product_category->update($data);
-        return redirect()->route('admin.product-categories.index')->with('success', 'Updated successfully!');
+        return redirect()->route('admin.categories.index')->with('success', 'Updated successfully!');
     }
 
     public function destroy(ProductCategory $product_category)
