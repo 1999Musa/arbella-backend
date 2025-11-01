@@ -58,9 +58,16 @@
             <!-- Content Section -->
             <div class="p-5 flex-1 flex flex-col">
                 <h3 class="text-lg font-bold text-gray-800 mb-1">{{ $product->name }}</h3>
-                <p class="text-sm text-emerald-600 font-medium mb-4 flex-1">
+                <p class="text-sm text-emerald-600 font-medium mb-3">
                     {{ $product->category?->title ?? 'Uncategorized' }}
                 </p>
+
+                <!-- Product Info -->
+                <div class="text-sm text-gray-700 space-y-1 mb-4 flex-1">
+                    <p><span class="font-semibold text-gray-900">Product Code:</span> {{ $product->product_code ?? '—' }}</p>
+                    <p><span class="font-semibold text-gray-900">MOQ:</span> {{ $product->moq ?? '—' }}</p>
+                    <p><span class="font-semibold text-gray-900">FOB:</span> {{ $product->fob ?? '—' }}</p>
+                </div>
 
                 <!-- Actions Section -->
                 <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
@@ -73,6 +80,7 @@
                             </svg>
                             Edit
                         </a>
+
                         <!-- Delete Button -->
                         <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                             @csrf

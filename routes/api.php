@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TeamMemberController;
-use App\Http\Controllers\Admin\PlaceOrderItemController;
-use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\HeroSliderController;
 use App\Http\Controllers\Admin\FactoryController;
 use App\Http\Controllers\Admin\SustainabilityController;
@@ -18,9 +16,14 @@ use App\Http\Controllers\Admin\ChooseHeroController;
 use App\Http\Controllers\Admin\ExcellenceController;
 use App\Http\Controllers\Admin\CommunitySectionController;
 use App\Http\Controllers\Admin\ContactHeroController;
-
-
 use App\Http\Controllers\Api\CategoryController;
+
+use App\Http\Controllers\Api\ContactController;
+
+
+
+Route::post('/contact', [ContactController::class, 'sendMail']);
+
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

@@ -49,56 +49,55 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('admin.products.index')->with('success','Product created.');
+        return redirect()->route('admin.products.index')->with('success', 'Product created.');
     }
 
     public function edit(Product $product)
     {
         $categories = Category::orderBy('title')->get();
         $product->load('images');
-        return view('admin.products.edit', compact('product','categories'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
     {
         $data = $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'product_code' => 'nullable|string',
-            'moq' => 'nullable|string',
-            'fob' => 'nullable|string',
+            'product_code' => 'nullable|string|max:255',
+            'moq' => 'nullable|string|max:255',
+            'fob' => 'nullable|string|max:255',
             'images.*' => 'nullable|image|max:5120',
-            'remove_images' => 'nullable|array', // array of image ids to remove
         ]);
 
-        // remove requested images
-        if (!empty($request->input('remove_images'))) {
-            foreach ($request->input('remove_images') as $imgId) {
-                $img = ProductImage::find($imgId);
-                if ($img) {
-                    \Storage::disk('public')->delete($img->path);
-                    $img->delete();
-                }
-            }
-        }
-
+        // Update basic product info first
         $product->update($data);
 
+        // If new images are uploaded → delete all old and replace
         if ($request->hasFile('images')) {
-            $existingCount = $product->images()->count();
+            // 1️⃣ Delete all old image files & DB records
+            foreach ($product->images as $oldImage) {
+                \Storage::disk('public')->delete($oldImage->path);
+                $oldImage->delete();
+            }
+
+            // 2️⃣ Upload and save new images
             foreach ($request->file('images') as $index => $img) {
                 $path = $img->store('products', 'public');
-                ProductImage::create([
+                \App\Models\ProductImage::create([
                     'product_id' => $product->id,
                     'path' => $path,
-                    'sort_order' => $existingCount + $index,
+                    'sort_order' => $index,
                 ]);
             }
         }
 
-        return redirect()->route('admin.products.index')->with('success','Product updated.');
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product updated successfully.');
     }
+
 
     public function destroy(Product $product)
     {
@@ -107,6 +106,6 @@ class ProductController extends Controller
             $img->delete();
         }
         $product->delete();
-        return back()->with('success','Product deleted.');
+        return back()->with('success', 'Product deleted.');
     }
 }

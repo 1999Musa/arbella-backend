@@ -41,20 +41,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @foreach($categories as $cat)
         <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg">
-            
-            <!-- Image Section -->
-            <div class="h-48 bg-gray-50 border-b border-gray-200">
-                @if($cat->hero_image)
-                    <img src="{{ Storage::url($cat->hero_image) }}" alt="{{ $cat->title }}" class="w-full h-full object-cover">
-                @else
-                    <div class="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.01.01" />
-                        </svg>
-                    </div>
-                @endif
-            </div>
-            
+
             <!-- Content Section -->
             <div class="p-5 flex-1 flex flex-col">
                 <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $cat->title }}</h3>

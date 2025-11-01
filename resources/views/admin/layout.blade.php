@@ -94,6 +94,7 @@
                     <div x-show="open === 'about'" x-collapse class="ml-4 mt-1 space-y-1">
                         <x-admin-link route="admin.about-hero.index" label="About Hero" class="ajax-link" />
                         <x-admin-link route="admin.team-members.index" label="Team Members" class="ajax-link" />
+                        <x-admin-link route="admin.clients.index" label="Clients" class="ajax-link" />
                     </div>
                 </div>
 
@@ -111,7 +112,8 @@
                         </svg>
                     </button>
                     <div x-show="open === 'products'" x-collapse class="ml-4 mt-1 space-y-1">
-                        <x-admin-link route="admin.categories.index" label="Product Categories" class="ajax-link" />
+                        <x-admin-link route="admin.categories.index" label=" Categories" class="ajax-link" />
+                        <x-admin-link route="admin.products.index" label="Product Lists" class="ajax-link" />
                     </div>
                 </div>
 

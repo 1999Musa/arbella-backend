@@ -22,7 +22,6 @@ use App\Http\Controllers\Admin\CommunitySectionController;
 use App\Http\Controllers\Admin\ContactHeroController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
-use App\Http\Controllers\Admin\ReasonController;
 
 // ✅ Default routes
 Route::get('/', function () {
@@ -51,7 +50,6 @@ Route::middleware(['auth'])
         Route::resource('order-steps', PlaceOrderItemController::class)->parameters(['order-steps' => 'order_step']);
         Route::resource('important-infos', PlaceOrderItemController::class)->parameters(['important-infos' => 'important_info']);
         Route::resource('place-order', PlaceOrderItemController::class);
-        Route::resource('reasons', ReasonController::class);
         Route::resource('hero-sliders', HeroSliderController::class);
         Route::resource('factory', FactoryController::class);
         Route::resource('sustainability', SustainabilityController::class);
@@ -72,6 +70,14 @@ Route::middleware(['auth'])
         Route::delete('excellence/{id}/remove-image', [ExcellenceController::class, 'removeImage'])
             ->name('excellence.removeImage');
     });
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/test-mail', function () {
+    Mail::raw('Browser test mail from Laravel', function ($msg) {
+        $msg->to('yourpersonalemail@gmail.com')->subject('Test from browser');
+    });
+    return '✅ Mail sent!';
+});
 
 // ✅ Authentication routes
 require __DIR__ . '/auth.php';

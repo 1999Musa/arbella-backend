@@ -56,40 +56,28 @@ class SustainabilityController extends Controller
         return view('admin.sustainability.edit', compact('sustainability'));
     }
 
-    public function update(Request $request, Sustainability $sustainability)
+public function update(Request $request, Sustainability $sustainability)
 {
     $data = $request->validate([
-        'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+        'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         'title' => 'required|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp |max:40960',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         'description' => 'nullable|string',
-        'remove_hero_image' => 'nullable|boolean',
-        'remove_image' => 'nullable|boolean',
     ]);
 
-    // Handle hero image removal
-    if ($request->has('remove_hero_image') && $request->remove_hero_image) {
+    // Replace hero image if new one is uploaded
+    if ($request->hasFile('hero_image')) {
         if ($sustainability->hero_image) {
             Storage::disk('public')->delete($sustainability->hero_image);
         }
-        $data['hero_image'] = null;
-    }
-
-    // Handle pillar image removal
-    if ($request->has('remove_image') && $request->remove_image) {
-        if ($sustainability->image) {
-            Storage::disk('public')->delete($sustainability->image);
-        }
-        $data['image'] = null;
-    }
-
-    // Handle hero image upload
-    if ($request->hasFile('hero_image')) {
         $data['hero_image'] = $request->file('hero_image')->store('sustainability', 'public');
     }
 
-    // Handle pillar image upload
+    // Replace pillar image if new one is uploaded
     if ($request->hasFile('image')) {
+        if ($sustainability->image) {
+            Storage::disk('public')->delete($sustainability->image);
+        }
         $data['image'] = $request->file('image')->store('sustainability', 'public');
     }
 
@@ -97,6 +85,7 @@ class SustainabilityController extends Controller
 
     return redirect()->route('admin.sustainability.index')->with('success', 'Updated successfully');
 }
+
 
     public function destroy(Sustainability $sustainability)
     {
